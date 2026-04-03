@@ -1,0 +1,134 @@
+"use client";
+
+import {
+  ShoppingCart,
+  Truck,
+  Cog,
+  Package,
+  Receipt,
+} from "lucide-react";
+import { FadeIn, StaggerContainer, StaggerItem } from "./AnimationWrapper";
+
+const steps = [
+  { number: 1, label: "DEMAND", icon: ShoppingCart, description: "Orders & Forecasts" },
+  { number: 2, label: "PROCUREMENT", icon: Truck, description: "Purchase & Inward" },
+  { number: 3, label: "EXECUTION", icon: Cog, description: "Production & QC", active: true },
+  { number: 4, label: "FULFILLMENT", icon: Package, description: "Dispatch & Delivery" },
+  { number: 5, label: "SETTLEMENT", icon: Receipt, description: "Invoice & Payment" },
+];
+
+export default function Flow() {
+  return (
+    <section id="solutions" className="py-24 lg:py-32 relative overflow-hidden">
+      {/* Background orb */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-100/20 rounded-full blur-3xl -z-10" />
+
+      <div className="max-w-7xl mx-auto px-6">
+        <FadeIn>
+          <div className="text-center mb-20">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-foreground tracking-tight font-[family-name:var(--font-space-grotesk)]">
+              One System. Full Visibility.
+            </h2>
+            <p className="mt-4 text-lg text-muted max-w-2xl mx-auto">
+              Connecting every node of your value chain in one singular, flowing
+              intelligent network.
+            </p>
+          </div>
+        </FadeIn>
+
+        {/* Desktop Timeline */}
+        <StaggerContainer
+          className="hidden lg:flex items-stretch justify-between relative"
+          staggerDelay={0.15}
+        >
+          {/* Connector Line */}
+          <div className="absolute top-[52px] left-[10%] right-[10%] h-[2px] bg-gradient-to-r from-slate-200 via-[#5a32fa]/50 to-slate-200 z-0" />
+
+          {steps.map((step) => {
+            const Icon = step.icon;
+            const isActive = step.active;
+            return (
+              <StaggerItem key={step.number} className="flex-1 relative z-10">
+                <div className="flex flex-col items-center text-center group cursor-default">
+                  {/* Circle */}
+                  <div
+                    className={`w-[104px] h-[104px] rounded-2xl flex flex-col items-center justify-center transition-all duration-300 group-hover:scale-105 ${
+                      isActive
+                        ? "bg-[#5a32fa] shadow-xl shadow-purple-600/25 animate-pulse-glow"
+                        : "bg-white border-2 border-slate-200 shadow-md group-hover:border-purple-300 group-hover:shadow-lg"
+                    }`}
+                  >
+                    <Icon
+                      size={28}
+                      className={isActive ? "text-white" : "text-slate-500 group-hover:text-[#5a32fa] transition-colors"}
+                    />
+                    <span
+                      className={`text-xs font-bold mt-1.5 ${
+                        isActive ? "text-white/80" : "text-slate-400"
+                      }`}
+                    >
+                      {step.number}
+                    </span>
+                  </div>
+
+                  {/* Label */}
+                  <h3
+                    className={`mt-5 text-sm font-bold tracking-wider ${
+                      isActive ? "text-[#5a32fa]" : "text-foreground"
+                    } font-[family-name:var(--font-space-grotesk)]`}
+                  >
+                    {step.label}
+                  </h3>
+                  <p className="mt-1 text-xs text-muted-light">{step.description}</p>
+                </div>
+              </StaggerItem>
+            );
+          })}
+        </StaggerContainer>
+
+        {/* Mobile Timeline */}
+        <div className="lg:hidden">
+          <StaggerContainer className="flex flex-col gap-4" staggerDelay={0.1}>
+            {steps.map((step) => {
+              const Icon = step.icon;
+              const isActive = step.active;
+              return (
+                <StaggerItem key={step.number}>
+                  <div
+                    className={`flex items-center gap-4 p-4 rounded-xl transition-all ${
+                      isActive
+                        ? "bg-[#5a32fa] text-white shadow-lg shadow-purple-600/20"
+                        : "bg-white border border-slate-200 shadow-sm"
+                    }`}
+                  >
+                    <div
+                      className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 ${
+                        isActive ? "bg-white/20" : "bg-slate-50"
+                      }`}
+                    >
+                      <Icon
+                        size={22}
+                        className={isActive ? "text-white" : "text-slate-500"}
+                      />
+                    </div>
+                    <div>
+                      <span className={`text-xs font-bold ${isActive ? "text-white/70" : "text-muted-light"}`}>
+                        STEP {step.number}
+                      </span>
+                      <h3 className={`text-sm font-bold ${isActive ? "text-white" : "text-foreground"} font-[family-name:var(--font-space-grotesk)]`}>
+                        {step.label}
+                      </h3>
+                      <p className={`text-xs ${isActive ? "text-white/70" : "text-muted-light"}`}>
+                        {step.description}
+                      </p>
+                    </div>
+                  </div>
+                </StaggerItem>
+              );
+            })}
+          </StaggerContainer>
+        </div>
+      </div>
+    </section>
+  );
+}
