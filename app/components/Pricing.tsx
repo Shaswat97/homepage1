@@ -1,60 +1,7 @@
 "use client";
 
 import { Check } from "lucide-react";
-import { FadeIn, StaggerContainer, StaggerItem } from "./AnimationWrapper";
-
-const plans = [
-  {
-    name: "Starter",
-    price: "₹9,999",
-    period: "/mo",
-    description: "For smaller factories moving from spreadsheet-led operations to connected workflows",
-    bestFor: "Factories moving from spreadsheets to a controlled operating system",
-    features: [
-      "Up to 5 users",
-      "Core order, purchase, inventory, and invoice workflows",
-      "Standard dashboards",
-      "Single plant or warehouse setup",
-      "Email support",
-    ],
-    cta: "Book a Demo",
-    popular: false,
-  },
-  {
-    name: "Growth",
-    price: "₹24,999",
-    period: "/mo",
-    description: "For growing manufacturers that need tighter control across orders, procurement, stock, production, and finance",
-    bestFor: "Teams that need tighter coordination across order, stock, production, dispatch, and finance",
-    features: [
-      "Up to 25 users",
-      "Advanced production and fulfillment workflows",
-      "Multi-warehouse visibility",
-      "Debit/credit note workflows",
-      "Priority support",
-      "Basic integrations",
-    ],
-    cta: "Book a Demo",
-    popular: true,
-  },
-  {
-    name: "Enterprise",
-    price: "Custom",
-    period: "",
-    description: "For larger operations that need deeper controls, governance, integrations, and custom process support",
-    bestFor: "Larger or more complex operations needing governance, integrations, and rollout flexibility",
-    features: [
-      "Unlimited users",
-      "Advanced reporting and governance",
-      "Full API/integration support",
-      "Custom workflows",
-      "Dedicated onboarding and support",
-      "On-premise or controlled deployment options",
-    ],
-    cta: "Contact Sales",
-    popular: false,
-  },
-];
+import { FadeIn } from "./AnimationWrapper";
 
 export default function Pricing() {
   return (
@@ -69,100 +16,70 @@ export default function Pricing() {
               Pricing based on the control your operations need
             </h2>
             <p className="mt-4 text-lg text-muted max-w-2xl mx-auto">
-              Start with the workflows that matter now, and expand as your factory adds complexity, teams, and reporting needs.
+              We know every factory is slightly different. Book a call to align on the workflows that matter now, and map out a tailored rollout plan and pricing schedule.
             </p>
           </div>
         </FadeIn>
 
-        <StaggerContainer
-          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 items-stretch"
-          staggerDelay={0.15}
-        >
-          {plans.map((plan) => (
-            <StaggerItem key={plan.name}>
-              <div
-                className={`rounded-2xl p-8 h-full flex flex-col relative ${
-                  plan.popular
-                    ? "pricing-popular bg-white"
-                    : "bg-white border border-slate-200 shadow-sm"
-                }`}
-              >
-                {/* Popular Badge */}
-                {plan.popular && (
-                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
-                    <span className="px-4 py-1.5 bg-[#5a32fa] text-white text-xs font-bold rounded-full shadow-lg shadow-purple-600/25">
-                      MOST POPULAR
-                    </span>
-                  </div>
-                )}
+        <FadeIn delay={0.15}>
+          <div className="max-w-3xl mx-auto">
+            <div className="bg-white border border-slate-200 shadow-sm rounded-2xl p-8 sm:p-10 text-center relative overflow-hidden">
+              {/* Highlight strip at the top */}
+              <div className="absolute top-0 left-0 w-full h-1.5 bg-[#5a32fa]" />
 
-                {/* Plan Name */}
-                <h3 className="text-lg font-bold text-foreground font-[family-name:var(--font-space-grotesk)]">
-                  {plan.name}
-                </h3>
-                <p className="text-sm text-muted-light mt-1 mb-4">
-                  {plan.description}
-                </p>
+              <h3 className="text-2xl font-bold text-foreground font-[family-name:var(--font-space-grotesk)] mb-2 mt-2">
+                Custom Factory Setup
+              </h3>
+              <p className="text-slate-500 mb-8 max-w-lg mx-auto">
+                Pricing scales securely based on user volume, integration requirements, and custom workflow demands.
+              </p>
 
-                <div className="mt-3 pt-3 border-t border-slate-100">
-                  <span className="text-[10px] font-bold text-[#5a32fa] uppercase tracking-wider block mb-0.5">Best for:</span>
-                  <span className="text-[13px] font-semibold text-slate-700 leading-snug block">{plan.bestFor}</span>
-                </div>
-
-                {/* Price */}
-                <div className="mt-6 mb-6">
-                  <span className="text-4xl font-extrabold text-foreground font-[family-name:var(--font-space-grotesk)]">
-                    {plan.price}
-                  </span>
-                  {plan.period && (
-                    <span className="text-muted-light font-medium">
-                      {plan.period}
-                    </span>
-                  )}
-                </div>
-
-                {/* Features */}
-                <ul className="space-y-3 flex-1">
-                  {plan.features.map((feature) => (
-                    <li
-                      key={feature}
-                      className="flex items-center gap-3 text-sm text-slate-700"
-                    >
-                      <div
-                        className={`w-5 h-5 rounded-full flex items-center justify-center shrink-0 ${
-                          plan.popular
-                            ? "bg-[#5a32fa]/10"
-                            : "bg-green-50"
-                        }`}
-                      >
-                        <Check
-                          size={12}
-                          className={
-                            plan.popular ? "text-[#5a32fa]" : "text-green-500"
-                          }
-                          strokeWidth={3}
-                        />
-                      </div>
-                      {feature}
-                    </li>
-                  ))}
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-10 text-left">
+                <ul className="space-y-4">
+                  <li className="flex items-center gap-3 text-sm text-slate-700 font-medium">
+                    <div className="w-6 h-6 rounded-full bg-purple-50 flex items-center justify-center shrink-0">
+                      <Check size={14} className="text-[#5a32fa]" strokeWidth={3} />
+                    </div>
+                    Tailored master data configuration
+                  </li>
+                  <li className="flex items-center gap-3 text-sm text-slate-700 font-medium">
+                    <div className="w-6 h-6 rounded-full bg-purple-50 flex items-center justify-center shrink-0">
+                      <Check size={14} className="text-[#5a32fa]" strokeWidth={3} />
+                    </div>
+                    Flexible user licensing models
+                  </li>
                 </ul>
+                <ul className="space-y-4">
+                  <li className="flex items-center gap-3 text-sm text-slate-700 font-medium">
+                    <div className="w-6 h-6 rounded-full bg-purple-50 flex items-center justify-center shrink-0">
+                      <Check size={14} className="text-[#5a32fa]" strokeWidth={3} />
+                    </div>
+                    Guided role-based onboarding
+                  </li>
+                  <li className="flex items-center gap-3 text-sm text-slate-700 font-medium">
+                    <div className="w-6 h-6 rounded-full bg-purple-50 flex items-center justify-center shrink-0">
+                      <Check size={14} className="text-[#5a32fa]" strokeWidth={3} />
+                    </div>
+                    Phased workflow deployments
+                  </li>
+                </ul>
+              </div>
 
-                {/* CTA */}
+              <div className="max-w-xs mx-auto">
                 <button
-                  className={`mt-8 w-full py-3.5 rounded-xl font-semibold text-sm transition-all duration-300 cursor-pointer ${
-                    plan.popular
-                      ? "bg-[#5a32fa] text-white shadow-lg shadow-purple-600/25 hover:bg-purple-700 hover:shadow-purple-600/40 hover:-translate-y-0.5"
-                      : "bg-slate-100 text-foreground hover:bg-slate-200 border border-slate-200"
-                  }`}
-                  id={`pricing-${plan.name.toLowerCase()}-btn`}
+                  type="button"
+                  onClick={() => {
+                    const el = document.getElementById("demo");
+                    if (el) el.scrollIntoView({ behavior: "smooth" });
+                  }}
+                  className="w-full py-4 bg-[#5a32fa] text-white font-bold rounded-xl shadow-lg shadow-purple-600/25 hover:bg-purple-700 hover:shadow-purple-600/40 hover:-translate-y-0.5 transition-all duration-300 cursor-pointer"
                 >
-                  {plan.cta}
+                  Contact Sales
                 </button>
               </div>
-            </StaggerItem>
-          ))}
-        </StaggerContainer>
+            </div>
+          </div>
+        </FadeIn>
       </div>
     </section>
   );
